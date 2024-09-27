@@ -78,9 +78,8 @@ const calculateCustomerPlans = (wholesalePlan, validityOptions, isFixedValidity,
   const plans = [];
   const baseCostPerGB = wholesalePlan.price / wholesalePlan.data;
 
-  const dataTransferCostPerGB = 50; // Example transfer fee per GB
-  const profitMargin = 20; // Example profit margin percentage
-
+  const dataTransferCostPerGB = 50; 
+  const profitMargin = 20; 
   for (let data = DATA_INCREMENT; data <= wholesalePlan.data; data += DATA_INCREMENT) {
     validityOptions.forEach((validity) => {
       const pricePerGB = isFixedValidity ? baseCostPerGB : baseCostPerGB * (validity / 90);
