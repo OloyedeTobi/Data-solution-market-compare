@@ -91,6 +91,7 @@ const calculateCustomerPlans = (wholesalePlan, validityOptions, isFixedValidity,
       // Find the market price based on the closest match in marketPrices
       const marketPlan = marketPrices.find(plan => plan.data === data && plan.validity === validity);
       const marketPrice = marketPlan ? marketPlan.price : 0; // Set to 0 if no market plan matches
+      const differenceToMarketPrice = marketPrice? marketPrice - minPrice : "NA"
 
       // Calculate price difference: positive means wholesale is cheaper, negative means market is cheaper
       const priceDifference = minPrice - marketPrice;
@@ -102,7 +103,7 @@ const calculateCustomerPlans = (wholesalePlan, validityOptions, isFixedValidity,
       const profitPerSale = adjustedRetailPrice - minPrice;
 
       const profitAtMaxPrice = maxPrice - minPrice;
-      const renewals = Math.floor(90 / validity);
+      const renewals = Math.ceil(90 / validity);
       const totalProfitOverRenewals = profitPerSale * renewals;
       const totalProfitAtMaxPrice = profitAtMaxPrice * renewals;
 
@@ -114,6 +115,7 @@ const calculateCustomerPlans = (wholesalePlan, validityOptions, isFixedValidity,
         priceDifference,          
         profitPerSale,
         profitAtMaxPrice,
+        differenceToMarketPrice,
         data,
         validity,
         potentialRenewals: renewals,
@@ -146,13 +148,11 @@ const ResultsTable = ({ results, isFixedValidity, filterType }) => {
           <table className="results-table">
             <thead>
               <tr>
-                <th>Retail Price (Naira)</th>
                 <th>Min Price (Naira)</th>
                 <th>Max Price (Naira)</th>
                 <th>Market Price (Naira)</th> 
-                <th>Price Difference (Naira)</th>  
+                <th>Price Difference to market price(Naira)</th>  
                 <th>Data (GB)</th>
-                <th>Profit per Sale (Naira)</th>
                 <th>Profit at Max Price (Naira)</th>
                 {!isFixedValidity && <th>Potential Renewals</th>}
                 {!isFixedValidity && <th>Total Profit Over 90 Days (Naira)</th>}
@@ -161,14 +161,12 @@ const ResultsTable = ({ results, isFixedValidity, filterType }) => {
             </thead>
             <tbody>
               {filteredResults.filter(result => result.validity === parseInt(validity)).map((plan, index) => (
-                <tr key={index} className={plan.priceDifference < 0 ? 'loss' : 'profit'}>
-                  <td>{plan.retailPrice}</td>
+                <tr key={index} className={plan.differenceToMarketPrice < 0 ? 'loss' : 'profit'}>
                   <td>{plan.minPrice}</td>
                   <td>{plan.maxPrice}</td>
                   <td>{plan.marketPrice}</td> 
-                  <td>{plan.priceDifference}</td> 
+                  <td>{plan.differenceToMarketPrice}</td> 
                   <td>{plan.data}</td>
-                  <td>{plan.profitPerSale}</td>
                   <td>{plan.profitAtMaxPrice}</td>
                   {!isFixedValidity && <td>{plan.potentialRenewals}</td>}
                   {!isFixedValidity && <td>{plan.totalProfitOverRenewals}</td>}

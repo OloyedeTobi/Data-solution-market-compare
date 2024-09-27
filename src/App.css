@@ -107,7 +107,7 @@ label[for="fixedValidity"] {
 }
 
 .results-table tbody tr:hover {
-  background-color: #ffdede;
+  background-color: #b7b7b7;
   transition: background-color 0.3s ease;
 }
 
@@ -146,6 +146,10 @@ h3 {
 @media (max-width: 768px) {
   .app-container {
     padding: 15px;
+    margin: 3px auto;
+    overflow: scroll;
+    max-width: 95%;
+
   }
 
   select, button {
