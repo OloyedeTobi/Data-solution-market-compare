@@ -96,10 +96,9 @@ const calculateCustomerPlans = (wholesalePlan, validityOptions, isFixedValidity,
       // Calculate price difference: positive means wholesale is cheaper, negative means market is cheaper
       const priceDifference = minPrice - marketPrice;
 
-      // Ensure retailPrice is valid
+
       const adjustedRetailPrice = retailPrice > minPrice ? retailPrice : minPrice + 1;
 
-      // Correct profit per sale calculation
       const profitPerSale = adjustedRetailPrice - minPrice;
 
       const profitAtMaxPrice = maxPrice - minPrice;
@@ -155,7 +154,6 @@ const ResultsTable = ({ results, isFixedValidity, filterType }) => {
                 <th>Data (GB)</th>
                 <th>Profit at Max Price (Naira)</th>
                 {!isFixedValidity && <th>Potential Renewals</th>}
-                {!isFixedValidity && <th>Total Profit Over 90 Days (Naira)</th>}
                 {!isFixedValidity && <th>Total Profit at Max Price Over 90 Days (Naira)</th>}
               </tr>
             </thead>
@@ -169,7 +167,6 @@ const ResultsTable = ({ results, isFixedValidity, filterType }) => {
                   <td>{plan.data}</td>
                   <td>{plan.profitAtMaxPrice}</td>
                   {!isFixedValidity && <td>{plan.potentialRenewals}</td>}
-                  {!isFixedValidity && <td>{plan.totalProfitOverRenewals}</td>}
                   {!isFixedValidity && <td>{plan.totalProfitAtMaxPrice}</td>}
                 </tr>
               ))}
