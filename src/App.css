@@ -1,38 +1,174 @@
-.App {
-  text-align: center;
-}
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* General Styles */
+body {
+  background-color: #f4f4f4;
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  min-height: 100vh; /* Ensure full screen height */
 }
 
-.App-link {
-  color: #61dafb;
+.app-container {
+  background-color: #fbfbfb;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto; /* Center the container */
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+h2 {
+  font-family: "PP Neue Machina", sans-serif;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+/* Dropdown and Buttons */
+label {
+  color: #222222;
+  font-weight: 600;
+}
+
+select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
+  margin: 10px 0;
+  font-size: 14px;
+  width: 100%;
+}
+
+button {
+  background-color: #e85a29;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 15px;
+}
+
+button:disabled {
+  background-color: #b7b7b7;
+}
+
+button:hover {
+  background-color: #d24f22;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+label[for="fixedValidity"] {
+  color: #333;
+  font-size: 14px;
+}
+
+/* Table Styles */
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  animation: fadeInUp 0.8s ease-in-out;
+  margin: 0 auto; /* Center the table */
+}
+
+.results-table thead {
+  background-color: #fceae3;
+  font-family: "PP Neue Machina", sans-serif;
+  font-size: 14px;
+}
+
+.results-table th {
+  padding: 12px;
+  text-align: center; /* Center text in headers */
+  color: #333333;
+  border-bottom: 1px solid #dddddd;
+}
+
+.results-table tbody td {
+  padding: 10px;
+  text-align: center; /* Center text in table cells */
+  color: #000000;
+  border-bottom: 1px solid #dddddd;
+}
+
+.results-table tbody tr:hover {
+  background-color: #ffdede;
+  transition: background-color 0.3s ease;
+}
+
+/* Table title styling */
+h3 {
+  font-family: "PP Neue Machina", sans-serif;
+  color: #333333;
+  margin-top: 20px;
+  text-align: left; /* Align the table title to the left */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 15px;
+  }
+
+  select, button {
+    width: 100%;
+  }
+}
+
+.results-container {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+.loss {
+  background-color: #ffdede;
+  color: #e85a29;
+}
+
+.profit {
+  background-color: #ddf3e4;
+  color: #000000;
+}
+
+table {
+  font-size: 0.95rem;
 }
